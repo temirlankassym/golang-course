@@ -1,0 +1,27 @@
+syntax = "proto3";
+package user;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/protocolbuffers/protobuf/examples/go/user";
+
+message User {
+  int32 id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+service UserService{
+  rpc AddUser (User) returns (UserId) {}
+  rpc GetUser (UserId) returns (User) {}
+  rpc ListUsers (google.protobuf.Empty) returns (Users) {}
+}
+
+message UserId {
+  int32 id = 1;
+}
+
+message Users {
+  repeated User users = 1;
+}
